@@ -1,0 +1,30 @@
+FROM SERVER TO CLIENTS (Broadcast):
+
+Player position:
+{
+    "type": "PLAYER_POS",
+    "nickname": player2,
+    "y": data2["y"]
+}
+
+Player score:
+{
+    "type": "PLAYER_POINTS",
+    "nickname": player2,
+    "points": data2["points"]
+}
+
+Ball pos:
+{
+    "type": "BALL_POS",
+    "x": BALL_X,
+    "y": BALL_Y,
+}
+
+FROM CLIENT TO SERVER:
+
+{
+    "nickname": NICKNAME,
+    "dy": dy (1 or -1)
+}
+
