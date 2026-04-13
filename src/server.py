@@ -50,15 +50,28 @@ while True:
 
 def process_game():
     print("start broadcast")
+    BALL_x = 0
+    BALL_y = 0
     while True:
         for player, data in players.items():
             for player2, data2 in players.items():
                 data["socket"].send(
                     json.dumps(
-                        {"type": "PLAYER_POSS", "nickname": player2, "y": data2["y"]}
+                        {"type": "PLAYER_POS", "nickname": player2, "y": data2["y"]}
                     ).encode()
                 )
-
+                data["socket"].send(
+                    json.dumps(
+                        {
+                            "type": "PLAYER_POINTS",
+                            "nickname": player2,
+                            "points": data2["points"],
+                        }
+                    ).encode()
+                )
+                data["socket"].send(
+                    json.dumps({"type": "BALL_POS", "x": BALL_x, "y": BALL_y}).encode()
+                )
         time.sleep(1 / FPS)
 
 

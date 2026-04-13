@@ -25,7 +25,16 @@ def handle_server():
         data = client_socket.recv(1024).decode()
         if not data:
             break
-        print(f"Отримано з сервера: {data}")
+        try:
+            data = json.loads(data)
+            if data["type"] == "PLAYER_POS":
+                ...
+            if data["type"] == "PLAYER_POINTS":
+                ...
+            if data["type"] == "BALL_POS":
+                ...
+        except:
+            continue
 
 
 def send_possition(dy):
